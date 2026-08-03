@@ -1,0 +1,11 @@
+{
+  "id": "wishlist",
+  "version": "0.1.0",
+  "contractVersion": "0.1",
+  "entry": "dist/index.js",
+  "displayName": "Wishlist",
+  "description": "Customer-scoped saved products — plugin-owned TypeORM table (Phase 4 D-02)",
+  "dependsOn": [],
+  "required": false,
+  "engines": {}
+}
