@@ -1,5 +1,11 @@
 # Wishlist Plugin
 
+| | |
+| --- | --- |
+| npm | `@opoha/plugin-wishlist` |
+| Repo | [Opoha/plugin-wishlist](https://github.com/Opoha/plugin-wishlist) |
+
+
 Official `@opoha/plugin-wishlist` — customer wishlists and recently viewed products.
 
 ## What it owns
@@ -32,6 +38,14 @@ Listens for core `ProductDeleted` and cascades wishlist cleanup for that product
 - `plugin:wishlist:read`
 - `plugin:wishlist:configure`
 
+## Install
+
+```bash
+pnpm add @opoha/plugin-wishlist
+```
+
+Add the package to your app `opoha.config.json` `"plugins"` array (or set `OPOHA_PLUGINS` / `OPOHA_PLUGINS_PATH` for a local checkout).
+
 ## Load
 
 ```bash
@@ -40,3 +54,7 @@ export OPOHA_PLUGINS="$(pwd)"
 ```
 
 Core discovers via `OPOHA_PLUGINS` / `OPOHA_PLUGINS_PATH` and dynamically imports `dist/index.js` — core never statically imports this package.
+
+## License
+
+MIT © [Opoha](https://github.com/Opoha)
