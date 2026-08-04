@@ -1,7 +1,7 @@
 import type { MigrationInterface, QueryRunner } from 'typeorm';
 
 /**
- * Initial wishlist + recently-viewed tables (Phase 4 D-02/D-03 / ADR-0005).
+ * Initial wishlist + recently-viewed tables (ADR-0005).
  * Table prefix: plugin id `wishlist` → `plugin_wishlist_*`
  * (never touches core tables).
  */

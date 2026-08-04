@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 /**
- * OWNER: @opoha/plugin-wishlist — recently viewed product (ADR-0005 / D-03).
+ * OWNER: @opoha/plugin-wishlist — recently viewed product (ADR-0005).
  * Table prefix: plugin id `wishlist` → `plugin_wishlist_*`.
  * customerId / productId are opaque UUIDs — no FK into core tables.
  */
