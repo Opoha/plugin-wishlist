@@ -44,9 +44,7 @@ export class WishlistInit1722721000000 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `DROP TABLE IF EXISTS "plugin_wishlist_recently_viewed"`,
-    );
+    await queryRunner.query(`DROP TABLE IF EXISTS "plugin_wishlist_recently_viewed"`);
     await queryRunner.query(`DROP TABLE IF EXISTS "plugin_wishlist_items"`);
   }
 }

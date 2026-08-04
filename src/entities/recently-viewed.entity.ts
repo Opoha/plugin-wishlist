@@ -1,11 +1,4 @@
-import {
-  Column,
-  Entity,
-  Index,
-  PrimaryGeneratedColumn,
-  Unique,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, Index, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 /**
  * OWNER: @opoha/plugin-wishlist — recently viewed product (ADR-0005 / D-03).
@@ -13,14 +6,8 @@ import {
  * customerId / productId are opaque UUIDs — no FK into core tables.
  */
 @Entity({ name: 'plugin_wishlist_recently_viewed' })
-@Unique('plugin_wishlist_recently_viewed_customer_product_uidx', [
-  'customerId',
-  'productId',
-])
-@Index('plugin_wishlist_recently_viewed_customer_viewed_idx', [
-  'customerId',
-  'viewedAt',
-])
+@Unique('plugin_wishlist_recently_viewed_customer_product_uidx', ['customerId', 'productId'])
+@Index('plugin_wishlist_recently_viewed_customer_viewed_idx', ['customerId', 'viewedAt'])
 export class RecentlyViewedEntity {
   @PrimaryGeneratedColumn('uuid')
   id!: string;

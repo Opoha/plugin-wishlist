@@ -20,13 +20,10 @@ export function resetWishlistForTests(): void {
 }
 
 /** Add a product to a customer's wishlist; idempotent on customer+product. */
-export function addToWishlist(
-  input: z.input<typeof wishlistItemSchema>,
-): WishlistItem {
+export function addToWishlist(input: z.input<typeof wishlistItemSchema>): WishlistItem {
   const parsed = wishlistItemSchema.parse(input);
   const existing = items.find(
-    (i) =>
-      i.customerId === parsed.customerId && i.productId === parsed.productId,
+    (i) => i.customerId === parsed.customerId && i.productId === parsed.productId,
   );
   if (existing) {
     return existing;
@@ -41,14 +38,9 @@ export function addToWishlist(
 }
 
 /** Remove a product from a customer's wishlist. Returns false if not present. */
-export function removeFromWishlist(
-  customerId: string,
-  productId: string,
-): boolean {
+export function removeFromWishlist(customerId: string, productId: string): boolean {
   const before = items.length;
-  items = items.filter(
-    (i) => !(i.customerId === customerId && i.productId === productId),
-  );
+  items = items.filter((i) => !(i.customerId === customerId && i.productId === productId));
   return items.length < before;
 }
 
@@ -61,9 +53,7 @@ export function listWishlist(customerId: string): WishlistItem[] {
 }
 
 export function isInWishlist(customerId: string, productId: string): boolean {
-  return items.some(
-    (i) => i.customerId === customerId && i.productId === productId,
-  );
+  return items.some((i) => i.customerId === customerId && i.productId === productId);
 }
 
 /** Cascade-remove wishlist entries for a deleted product (ProductDeleted). */

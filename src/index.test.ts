@@ -1,11 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  MIGRATIONS_TABLE_NAME,
-  PLUGIN_ID,
-  entities,
-  migrations,
-} from './database.js';
+import { MIGRATIONS_TABLE_NAME, PLUGIN_ID, entities, migrations } from './database.js';
 import wishlistPlugin, {
   addToWishlist,
   clearRecentlyViewed,
@@ -59,10 +54,7 @@ function emptyBootCtx() {
       registerProvider(input: { token: string }) {
         providers.push({ token: input.token });
       },
-      registerListener(
-        eventName: string,
-        handler: (event: unknown) => void | Promise<void>,
-      ) {
+      registerListener(eventName: string, handler: (event: unknown) => void | Promise<void>) {
         listeners.push({ eventName, handler });
       },
       registerAdmin(contribution: unknown) {
@@ -168,12 +160,12 @@ describe('@opoha/plugin-wishlist', () => {
       viewedAt: t3,
     });
 
-    expect(
-      listRecentlyViewed({ customerId: CUSTOMER_A }).map((r) => r.productId),
-    ).toEqual([PRODUCT_C, PRODUCT_B, PRODUCT_A]);
-    expect(
-      listRecentlyViewed({ customerId: CUSTOMER_A, limit: 2 }),
-    ).toHaveLength(2);
+    expect(listRecentlyViewed({ customerId: CUSTOMER_A }).map((r) => r.productId)).toEqual([
+      PRODUCT_C,
+      PRODUCT_B,
+      PRODUCT_A,
+    ]);
+    expect(listRecentlyViewed({ customerId: CUSTOMER_A, limit: 2 })).toHaveLength(2);
   });
 
   it('bumps viewedAt on re-view and clears per customer', () => {
@@ -196,9 +188,10 @@ describe('@opoha/plugin-wishlist', () => {
       viewedAt: late,
     });
     expect(bumped.viewedAt.getTime()).toBe(late.getTime());
-    expect(
-      listRecentlyViewed({ customerId: CUSTOMER_A }).map((r) => r.productId),
-    ).toEqual([PRODUCT_A, PRODUCT_B]);
+    expect(listRecentlyViewed({ customerId: CUSTOMER_A }).map((r) => r.productId)).toEqual([
+      PRODUCT_A,
+      PRODUCT_B,
+    ]);
 
     expect(clearRecentlyViewed(CUSTOMER_A)).toBe(2);
     expect(listRecentlyViewed({ customerId: CUSTOMER_A })).toHaveLength(0);
@@ -209,10 +202,7 @@ describe('@opoha/plugin-wishlist', () => {
     wishlistPlugin.boot?.(ctx);
 
     expect(providers).toEqual(
-      expect.arrayContaining([
-        { token: 'wishlist.items' },
-        { token: 'wishlist.recentlyViewed' },
-      ]),
+      expect.arrayContaining([{ token: 'wishlist.items' }, { token: 'wishlist.recentlyViewed' }]),
     );
     expect(graphql.map((g) => g.name)).toEqual([
       'wishlistItems',
@@ -253,8 +243,6 @@ describe('@opoha/plugin-wishlist', () => {
     await migration.down(downRunner as never);
     const downSql = downRunner.queries.join('\n');
     expect(downSql).toContain('DROP TABLE IF EXISTS "plugin_wishlist_items"');
-    expect(downSql).toContain(
-      'DROP TABLE IF EXISTS "plugin_wishlist_recently_viewed"',
-    );
+    expect(downSql).toContain('DROP TABLE IF EXISTS "plugin_wishlist_recently_viewed"');
   });
 });

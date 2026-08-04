@@ -1,11 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  PrimaryGeneratedColumn,
-  Unique,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 /**
  * OWNER: @opoha/plugin-wishlist — saved product row (ADR-0005).
@@ -13,10 +6,7 @@ import {
  * customerId / productId are opaque UUIDs — no FK into core tables.
  */
 @Entity({ name: 'plugin_wishlist_items' })
-@Unique('plugin_wishlist_items_customer_product_uidx', [
-  'customerId',
-  'productId',
-])
+@Unique('plugin_wishlist_items_customer_product_uidx', ['customerId', 'productId'])
 @Index('plugin_wishlist_items_customer_idx', ['customerId'])
 export class WishlistItemEntity {
   @PrimaryGeneratedColumn('uuid')

@@ -5,11 +5,7 @@ import 'reflect-metadata';
  * Core never imports this package statically — hosts load via dynamic import.
  */
 
-import {
-  RecentlyViewedEntity,
-  WishlistItemEntity,
-  wishlistEntities,
-} from './entities/index.js';
+import { RecentlyViewedEntity, WishlistItemEntity, wishlistEntities } from './entities/index.js';
 import { WishlistInit1722721000000 } from './migrations/1722721000000-WishlistInit.js';
 import { wishlistMigrations } from './migrations/index.js';
 

@@ -61,20 +61,16 @@ export default definePlugin({
       name: 'wishlistItems',
       kind: 'query',
       descriptor: {
-        resolve: (
-          _parent: unknown,
-          args: { customerId: string },
-        ): WishlistItem[] => listWishlist(args.customerId),
+        resolve: (_parent: unknown, args: { customerId: string }): WishlistItem[] =>
+          listWishlist(args.customerId),
       },
     });
     ctx.registerGraphQL({
       name: 'isInWishlist',
       kind: 'query',
       descriptor: {
-        resolve: (
-          _parent: unknown,
-          args: { customerId: string; productId: string },
-        ): boolean => isInWishlist(args.customerId, args.productId),
+        resolve: (_parent: unknown, args: { customerId: string; productId: string }): boolean =>
+          isInWishlist(args.customerId, args.productId),
       },
     });
     ctx.registerGraphQL({
@@ -91,10 +87,8 @@ export default definePlugin({
       name: 'removeFromWishlist',
       kind: 'mutation',
       descriptor: {
-        resolve: (
-          _parent: unknown,
-          args: { customerId: string; productId: string },
-        ): boolean => removeFromWishlist(args.customerId, args.productId),
+        resolve: (_parent: unknown, args: { customerId: string; productId: string }): boolean =>
+          removeFromWishlist(args.customerId, args.productId),
       },
     });
 
@@ -132,8 +126,7 @@ export default definePlugin({
     });
 
     ctx.registerListener('ProductDeleted', async (event) => {
-      const productId = (event as { data?: { productId?: string } })?.data
-        ?.productId;
+      const productId = (event as { data?: { productId?: string } })?.data?.productId;
       if (typeof productId === 'string' && productId.length > 0) {
         removeWishlistEntriesForProduct(productId);
       }
@@ -165,10 +158,7 @@ export default definePlugin({
           permission: 'plugin:wishlist:configure',
         },
       ],
-      permissions: [
-        'plugin:wishlist:read',
-        'plugin:wishlist:configure',
-      ],
+      permissions: ['plugin:wishlist:read', 'plugin:wishlist:configure'],
     });
   },
 });

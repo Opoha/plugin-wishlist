@@ -13,12 +13,7 @@ export const recordRecentlyViewedSchema = z.object({
 
 export const listRecentlyViewedSchema = z.object({
   customerId: z.string().uuid(),
-  limit: z
-    .number()
-    .int()
-    .min(1)
-    .max(100)
-    .default(DEFAULT_RECENTLY_VIEWED_LIMIT),
+  limit: z.number().int().min(1).max(100).default(DEFAULT_RECENTLY_VIEWED_LIMIT),
 });
 
 export type RecentlyViewed = {
@@ -46,9 +41,7 @@ export function recordRecentlyViewed(
   const parsed = recordRecentlyViewedSchema.parse(input);
   const viewedAt = parsed.viewedAt ?? new Date();
   const existing = rows.find(
-    (row) =>
-      row.customerId === parsed.customerId &&
-      row.productId === parsed.productId,
+    (row) => row.customerId === parsed.customerId && row.productId === parsed.productId,
   );
   if (existing != null) {
     const updated: RecentlyViewed = {
