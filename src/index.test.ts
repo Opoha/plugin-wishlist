@@ -20,6 +20,7 @@ import wishlistPlugin, {
   wishlistItemSchema,
 } from './index.js';
 import { WishlistInit1722721000000 } from './migrations/1722721000000-WishlistInit.js';
+import { createStubPluginContext } from '@opoha/plugin-sdk';
 
 /** RFC-4122 variant nibble (8/9/a/b) required by Zod 4 uuid(). */
 const CUSTOMER_A = '11111111-1111-4111-8111-111111111111';
@@ -51,8 +52,7 @@ function emptyBootCtx() {
     graphql,
     admin,
     listeners,
-    ctx: {
-      pluginId: 'wishlist',
+    ctx: createStubPluginContext('wishlist', {
       registerGraphQL(input: { name: string; kind: string }) {
         graphql.push({ name: input.name, kind: input.kind });
       },
@@ -75,7 +75,7 @@ function emptyBootCtx() {
       registerNotificationProvider() {},
       registerStorageAdapter() {},
       registerSearchProvider() {},
-    },
+    }),
   };
 }
 
