@@ -1,7 +1,7 @@
 {
   "name": "@opoha/plugin-wishlist",
-  "version": "1.0.0",
- "description": "Official Opoha wishlist plugin — add/remove/list saved products",
+  "version": "1.0.1",
+  "description": "Official Opoha wishlist plugin — add/remove/list saved products",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
