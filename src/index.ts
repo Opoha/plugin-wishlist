@@ -42,7 +42,7 @@ export {
 } from './wishlist.js';
 
 /**
- * Official wishlist plugin (Phase 4 D-02 / D-03).
+ * Official wishlist plugin.
  * Owns wishlist + recently-viewed tables — never edits core schema.
  */
 export default definePlugin({

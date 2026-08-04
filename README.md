@@ -1,6 +1,6 @@
 # Wishlist Plugin
 
-Official `@opoha/plugin-wishlist` — customer wishlists and recently viewed products (Phase 4 D-02 / D-03).
+Official `@opoha/plugin-wishlist` — customer wishlists and recently viewed products.
 
 ## What it owns
 
